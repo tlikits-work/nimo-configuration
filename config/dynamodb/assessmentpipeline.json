@@ -1,0 +1,3298 @@
+{
+  "ID": "assessmentpipeline",
+  "SID": "default",
+  "Preference": {
+    "Ignore Middle Name": false
+  },
+  "Rules": {
+    "Asset Position": {
+      "Aggregate": [
+        {
+          "include": false,
+          "metrics": "Net Assets",
+          "parameters": "$500,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Net Assets - Security",
+          "parameters": "$500,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Combined Assets Amount",
+          "parameters": "$200,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Combined Liabilities Amount",
+          "parameters": "$100,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Security Property Value",
+          "parameters": "$1,000,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Other Assets Amount",
+          "parameters": "$500,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Asset / Liability Ratio",
+          "parameters": "0.8",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "LVR (discounted 5%)",
+          "parameters": "0.8",
+          "relation": "NO LESS THAN"
+        }
+      ],
+      "Asset - Deposit Fund": [
+        {
+          "include": false,
+          "metrics": "Customer Estimate Value",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Verified Deposit Value",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "availableParameters": ["ANZ", "NAB", "Westpac"],
+          "include": false,
+          "metrics": "Institution",
+          "parameters": [],
+          "relation": "NOT IN"
+        },
+        {
+          "include": false,
+          "metrics": "BSB",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Account Number",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Evaluation Percentage",
+          "parameters": "100%",
+          "relation": "EQUAL"
+        }
+      ],
+      "Asset - Home Content": [
+        {
+          "include": false,
+          "metrics": "Customer Estimate Value",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Market Value",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Evaluation Percentage",
+          "parameters": "100%",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Proof of Asset",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Asset - Other": [
+        {
+          "include": false,
+          "metrics": "Customer Estimate Value",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Market Value",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Evaluation Percentage",
+          "parameters": "75%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Proof of Asset",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Asset - Property": [
+        {
+          "availableParameters": ["Yes", "No"],
+          "include": false,
+          "metrics": "Is Primary Property",
+          "parameters": ["Yes", "No"],
+          "relation": "IN"
+        },
+        {
+          "include": false,
+          "metrics": "Property Size (in square meters)",
+          "parameters": "50",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Land Area (in square meters)",
+          "parameters": "150",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "availableParameters": [
+            "Apartment/Unit",
+            "Townhouse/Villa",
+            "Residential Vacant Land <= 1500 sqm",
+            "HOUSE",
+            "UNIT"
+          ],
+          "include": false,
+          "metrics": "Accepted Property Type",
+          "parameters": [
+            "Apartment/Unit",
+            "Townhouse/Villa",
+            "Residential Vacant Land <= 1500 sqm",
+            "HOUSE",
+            "UNIT"
+          ],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": ["investment", "liveIn", "Equity Release"],
+          "include": false,
+          "metrics": "Accepted Purpose",
+          "parameters": ["liveIn", "investment", "Equity Release"],
+          "relation": "IN"
+        },
+        {
+          "include": false,
+          "metrics": "LVR",
+          "parameters": "35%",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Combined LVR",
+          "parameters": "80%",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Customer Estimate Value",
+          "parameters": "$400,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Market Value",
+          "parameters": "$400,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "availableParameters": [
+            "2083",
+            "2105",
+            "2333",
+            "2334",
+            "2335",
+            "2835",
+            "2880",
+            "2898",
+            "2899",
+            "4025",
+            "4183",
+            "4184",
+            "4401",
+            "4405",
+            "4413",
+            "4415",
+            "4419",
+            "4420",
+            "4455",
+            "4512",
+            "4581",
+            "4610",
+            "4702",
+            "4709",
+            "4710",
+            "4712",
+            "4713",
+            "4717",
+            "4718",
+            "4719",
+            "4720",
+            "4721",
+            "4723",
+            "4728",
+            "4737",
+            "4742",
+            "4743",
+            "4744",
+            "4745",
+            "4746",
+            "4753",
+            "4754",
+            "4803",
+            "4804",
+            "4805",
+            "4825",
+            "4874",
+            "4877",
+            "4895",
+            "5600",
+            "5601",
+            "5608",
+            "5609",
+            "5722",
+            "5725",
+            "5731",
+            "6161",
+            "6530",
+            "6532",
+            "6728",
+            "6225",
+            "6244",
+            "6258",
+            "6390",
+            "6429",
+            "6430",
+            "6432",
+            "6436",
+            "6437",
+            "6438",
+            "6440",
+            "6442",
+            "6443",
+            "6479",
+            "6511",
+            "6642",
+            "6646",
+            "6701",
+            "6710",
+            "6713",
+            "6714",
+            "6716",
+            "6718",
+            "6720",
+            "6721",
+            "6722",
+            "6751",
+            "6753",
+            "6758",
+            "6760",
+            "6798",
+            "7190",
+            "7257",
+            "7467",
+            "7468",
+            "7469",
+            "7470",
+            "0860",
+            "0880",
+            "0885",
+            "0886"
+          ],
+          "include": false,
+          "metrics": "High Risk Postcode",
+          "parameters": ["2083", "2888", "2999"],
+          "relation": "NOT IN"
+        },
+        {
+          "availableParameters": [
+            "2000",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2077",
+            "2089",
+            "2113",
+            "2114",
+            "2127",
+            "2138",
+            "2140",
+            "2142",
+            "2150",
+            "2200",
+            "2205",
+            "2216",
+            "2220",
+            "3000",
+            "3002",
+            "3003",
+            "3004",
+            "3006",
+            "3008",
+            "3051",
+            "3141",
+            "3205",
+            "4000",
+            "4001",
+            "4002",
+            "4003",
+            "4004",
+            "4005",
+            "4006",
+            "4007",
+            "4032",
+            "4101",
+            "4102",
+            "4169",
+            "4215",
+            "4216",
+            "4217",
+            "4218",
+            "4870",
+            "4878",
+            "4879",
+            "5000",
+            "6000",
+            "6003",
+            "6004",
+            "6005",
+            "6100",
+            "6102",
+            "6103",
+            "6104",
+            "6105",
+            "6107",
+            "6164",
+            "0800"
+          ],
+          "include": false,
+          "metrics": "High Density Postcode",
+          "parameters": [
+            "2000",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "3000"
+          ],
+          "relation": "NOT IN"
+        },
+        {
+          "include": false,
+          "metrics": "Property Type Match",
+          "parameters": "Dynamic",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Property Valuation",
+          "parameters": "$1,500,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Property Valuation (discounted)",
+          "parameters": "$1,500,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "FSD Confidence",
+          "parameters": "20",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Proof of Valuation",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Land Title",
+          "parameters": "",
+          "relation": "INCLUDE"
+        },
+        {
+          "include": false,
+          "metrics": "Land Title Encumbrances",
+          "parameters": "0",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Land Title Name",
+          "parameters": "",
+          "relation": "EQUAL"
+        },
+        {
+          "availableParameters": [
+            "INDIVIDUAL",
+            "ORGANISATION",
+            "CROWN",
+            "UNKNOWN"
+          ],
+          "include": false,
+          "metrics": "Land Title Type",
+          "parameters": ["INDIVIDUAL", "ORGANISATION", "CROWN"],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": [
+            "PASTORAL_LEASE",
+            "JOINT_TENANTS",
+            "SOLE_PROPRIETOR",
+            "TENANTS_IN_COMMON",
+            "UNKNOWN"
+          ],
+          "include": false,
+          "metrics": "Land Title Tenancy",
+          "parameters": [
+            "PASTORAL_LEASE",
+            "JOINT_TENANTS",
+            "SOLE_PROPRIETOR",
+            "TENANTS_IN_COMMON",
+            "UNKNOWN"
+          ],
+          "relation": "IN"
+        },
+        {
+          "include": false,
+          "metrics": "Proof of Land Title",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Asset - Share": [
+        {
+          "include": false,
+          "metrics": "Customer Estimate Value",
+          "parameters": "$4000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Market Value",
+          "parameters": "$4000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Evaluation Percentage",
+          "parameters": "100%",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Share Certificate",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Asset - Superannuation": [
+        {
+          "include": false,
+          "metrics": "Superannuation Fund Value",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Proof of Asset",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Evaluation Percentage",
+          "parameters": "80%",
+          "relation": "EQUAL"
+        }
+      ],
+      "Asset - Vehicle": [
+        {
+          "include": false,
+          "metrics": "Age",
+          "parameters": "5 years",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Customer Estimate Value",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Market Value",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Evaluation Percentage",
+          "parameters": "100%",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Proof of Registration",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Liability - BNPL": [
+        {
+          "include": false,
+          "metrics": "Liability Amount",
+          "parameters": "$5,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Limit",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Statements of Liability",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Liability - Business Loan": [
+        {
+          "include": false,
+          "metrics": "Liability Amount",
+          "parameters": "$50,000",
+          "relation": "NO MORE THAN"
+        }
+      ],
+      "Liability - Credit Card": [
+        {
+          "include": false,
+          "metrics": "Liability Amount",
+          "parameters": "$50,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Limit",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Bank Statements of Credit Card",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Liability - Home Loan": [
+        {
+          "include": false,
+          "metrics": "Liability Amount",
+          "parameters": "$100,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Limit",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Amount excl. fees",
+          "parameters": "$100,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Bank Statements of Loan",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Liability - Other": [
+        {
+          "include": false,
+          "metrics": "Liability Amount",
+          "parameters": "$5,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Limit",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Statements of Liability",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Liability - Personal Loan": [
+        {
+          "include": false,
+          "metrics": "Liability Amount",
+          "parameters": "$100,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Limit",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Bank Statements of Loan",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Liability - Store Card": [
+        {
+          "include": false,
+          "metrics": "Liability Amount",
+          "parameters": "$50,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Limit",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Statements of Store Card",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ]
+    },
+    "Balance Sheet": {
+      "Aggregate": [
+        {
+          "include": false,
+          "metrics": "Total Net Assets",
+          "parameters": "$1,700",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Working Capital",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        }
+      ],
+      "Assets - Balance Sheet": [
+        {
+          "include": false,
+          "metrics": "Total Assets",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        }
+      ],
+      "Liabilities": [
+        {
+          "include": false,
+          "metrics": "Total Liabilities",
+          "parameters": "$0",
+          "relation": "EQUAL"
+        }
+      ]
+    },
+    "Character": {
+      "Basics": [
+        {
+          "include": false,
+          "metrics": "Age Lower Limit",
+          "parameters": 55,
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Age Upper Limit",
+          "parameters": 75,
+          "relation": "NO MORE THAN"
+        },
+        {
+          "availableParameters": [
+            "Australian Citizen",
+            "Australian Permanent Resident",
+            "NZ Citizen holding Special Category Visa",
+            "Others"
+          ],
+          "include": false,
+          "metrics": "Residency Status",
+          "parameters": ["Australian Citizen", "Australian Permanent Resident"],
+          "relation": "IN"
+        },
+        {
+          "include": false,
+          "metrics": "Tax Identification Number",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Bureau Check": [
+        {
+          "include": false,
+          "metrics": "Credit Bureau Check Report",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Credit Bureau Check Score",
+          "parameters": "650",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Age of Credit File (days)",
+          "parameters": "1000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Number of Credit Enquiries",
+          "parameters": 30,
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Number of Defaults",
+          "parameters": "3",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Total Number of Buy Now/Pay Later",
+          "parameters": "2",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Total Amount of Defaults",
+          "parameters": "$5,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Number of Credit Exposure Accounts",
+          "parameters": 1,
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Total Amount of Credit Exposure Accounts",
+          "parameters": "$10,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Number of Court Actions",
+          "parameters": 1,
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Number of Personal Insolvencies",
+          "parameters": 1,
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Number of Directorships",
+          "parameters": 1,
+          "relation": "NO MORE THAN"
+        }
+      ],
+      "Bureau Check - Equifax": [
+        {
+          "include": false,
+          "metrics": "Credit Bureau Check Report",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Credit Bureau Check Score",
+          "parameters": "650",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Age of Credit File (days)",
+          "parameters": "1000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Number of Credit Enquiries",
+          "parameters": 30,
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Number of Defaults",
+          "parameters": "3",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Total Number of Buy Now/Pay Later",
+          "parameters": "2",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Total Amount of Defaults",
+          "parameters": "$5,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Number of Court Actions",
+          "parameters": 1,
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Number of Personal Insolvencies",
+          "parameters": 1,
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Number of Directorships",
+          "parameters": 1,
+          "relation": "NO MORE THAN"
+        }
+      ],
+      "Commercial Bureau Check": [
+        {
+          "actual": "Not Provided",
+          "evaluation": "Refer",
+          "include": false,
+          "metrics": "Credit Bureau Check Report",
+          "parameters": "Mandatory",
+          "requirement": "REQUIRE"
+        },
+        {
+          "actual": "Not Provided",
+          "evaluation": "Refer",
+          "include": false,
+          "metrics": "Number of Defaults",
+          "parameters": "1",
+          "requirement": "NO LESS THAN"
+        },
+        {
+          "actual": "Not Provided",
+          "evaluation": "Refer",
+          "include": false,
+          "metrics": "Number of Enquiries",
+          "parameters": "1",
+          "requirement": "NO LESS THAN"
+        },
+        {
+          "actual": "Not Provided",
+          "evaluation": "Refer",
+          "include": false,
+          "metrics": "Total Amount of General Enquiries",
+          "parameters": "1",
+          "requirement": "NO MORE THAN"
+        },
+        {
+          "actual": "Not Provided",
+          "evaluation": "Refer",
+          "include": false,
+          "metrics": "Number of Trade References",
+          "parameters": "1",
+          "requirement": "NO MORE THAN"
+        },
+        {
+          "actual": "Not Provided",
+          "evaluation": "Refer",
+          "metrics": "Number of Court Actions",
+          "parameters": "1",
+          "requirement": "NO MORE THAN"
+        },
+        {
+          "actual": "Not Provided",
+          "evaluation": "Refer",
+          "include": false,
+          "metrics": "Number of Director Court Actions",
+          "parameters": "1",
+          "requirement": "NO MORE THAN"
+        },
+        {
+          "actual": "Not Provided",
+          "evaluation": "Refer",
+          "include": false,
+          "metrics": "Number of Specified Registered Charges",
+          "parameters": "1",
+          "requirement": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "List of Directors Identified": []
+        }
+      ],
+      "Company": [
+        {
+          "availableParameters": [
+            "Company",
+            "Corporate trustee (company)",
+            "Partnership",
+            "Private Company",
+            "Sole Trader",
+            "Self Managed Super Fund"
+          ],
+          "include": false,
+          "metrics": "Type of Company",
+          "parameters": [
+            "Company",
+            "Corporate trustee (company)",
+            "Partnership",
+            "Private Company",
+            "Sole Trader",
+            "Self Managed Super Fund"
+          ],
+          "relation": "IN"
+        },
+        {
+          "include": false,
+          "metrics": "ABN Status",
+          "parameters": "Active",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "ABN Activations date",
+          "parameters": 1,
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "GST Status",
+          "parameters": "Registered",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "GST Registration date",
+          "parameters": 1,
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Registered Business Names",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Identity": [
+        {
+          "include": false,
+          "metrics": "Digital ID Check",
+          "parameters": "Complete - Passed",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Identity Score",
+          "parameters": 100,
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Passport",
+          "parameters": 100,
+          "relation": "Score Worth"
+        },
+        {
+          "include": false,
+          "metrics": "Licence",
+          "parameters": 70,
+          "relation": "Score Worth"
+        },
+        {
+          "include": false,
+          "metrics": "Medicare",
+          "parameters": 30,
+          "relation": "Score Worth"
+        },
+        {
+          "include": false,
+          "metrics": "Other",
+          "parameters": "0",
+          "relation": "Score Worth"
+        },
+        {
+          "include": false,
+          "metrics": "Bank Statements Check",
+          "parameters": "Mandatory",
+          "relation": "INCLUDE"
+        },
+        {
+          "include": false,
+          "metrics": "Land Title Check",
+          "parameters": "Mandatory",
+          "relation": "INCLUDE"
+        }
+      ],
+      "KYC": [
+        {
+          "include": false,
+          "metrics": "PEP",
+          "parameters": "Negative",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Sanctions",
+          "parameters": "Negative",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Financial Regulator",
+          "parameters": "Negative",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Law Enforcement",
+          "parameters": "Negative",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Disqualified Director",
+          "parameters": "Negative",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Insolvency",
+          "parameters": "Negative",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Adverse Media",
+          "parameters": "Negative",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "KYC Profile",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ]
+    },
+    "Condition": {
+      "Applicant Age": [
+        {
+          "include": false,
+          "metrics": "Youngest Borrower Lower Age",
+          "parameters": 55,
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Youngest Borrower Upper Age",
+          "parameters": 75,
+          "relation": "NO MORE THAN"
+        }
+      ],
+      "Needs Analysis": [
+        {
+          "include": false,
+          "metrics": "Requested Loan Amount",
+          "parameters": "$500,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "availableParameters": {
+            "Equity Release": [
+              {
+                "label": "Assisting family to buy a home",
+                "value": "kidsHome"
+              },
+              {
+                "label": "Funding home renovations or maintenance",
+                "value": "renovate"
+              },
+              {
+                "label": "Paying for grandchildren’s education",
+                "value": "grandkidsEducation"
+              },
+              {
+                "label": "Funding travel",
+                "value": "travel"
+              },
+              {
+                "label": "Purchase a vehicle",
+                "value": "purchase-car"
+              },
+              {
+                "label": "Funding medical expenses",
+                "value": "unforseenMedical"
+              },
+              {
+                "label": "Consolidating debt",
+                "value": "debtConsolidation"
+              },
+              {
+                "label": "Funding aged care expenses",
+                "value": "fundingAgedCareExpenses"
+              },
+              {
+                "label": "Funding day to day living expenses",
+                "value": "fundingDayToDayExpenses"
+              },
+              {
+                "label": "Gifts to family or other friends",
+                "value": "giftFamilyOrOther"
+              },
+              {
+                "label": "Making business or financial investments",
+                "value": "invest"
+              },
+              {
+                "label": "Other - we will contact you to find out more",
+                "value": "other"
+              }
+            ],
+            "Purpose Business Loan": [
+              {
+                "label": "Buying or hiring equipment",
+                "value": "equipment"
+              },
+              {
+                "label": "Expansion, growth or marketing",
+                "value": "expansion"
+              },
+              {
+                "label": "Purchasing inventory",
+                "value": "purchasingInventory"
+              },
+              {
+                "label": "Pay suppliers",
+                "value": "paySuppliers"
+              },
+              {
+                "label": "Workplace Renovation",
+                "value": "workplaceRenovation"
+              },
+              {
+                "label": "Working Capital",
+                "value": "workingCapital"
+              },
+              {
+                "label": "Pay off non tax debt",
+                "value": "payOffNonTaxDebt"
+              },
+              {
+                "label": "Pay off tax debt",
+                "value": "payOffTaxDebt"
+              },
+              {
+                "label": "Trade Credit",
+                "value": "tradeCredit"
+              },
+              {
+                "label": "Other",
+                "value": "other"
+              }
+            ],
+            "Purpose Home Loan": [
+              {
+                "label": "Renovation",
+                "value": "renovation"
+              },
+              {
+                "label": "Deposit on new home",
+                "value": "new-home-deposit"
+              },
+              {
+                "label": "Deposit on new investment property",
+                "value": "investment-deposit"
+              },
+              {
+                "label": "Purchase a car",
+                "value": "purchase-car"
+              },
+              {
+                "label": "Holiday",
+                "value": "holiday"
+              },
+              {
+                "label": "Other",
+                "value": "other"
+              }
+            ],
+            "Purpose Personal Loan": [
+              {
+                "label": "Vehicle",
+                "value": "carBikeVan"
+              },
+              {
+                "label": "Holiday",
+                "value": "holiday"
+              },
+              {
+                "label": "Wedding",
+                "value": "wedding"
+              },
+              {
+                "label": "Home Improvement",
+                "value": "homeRemodel"
+              },
+              {
+                "label": "Home appliances",
+                "value": "homeAppliance"
+              },
+              {
+                "label": "Moving expenses",
+                "value": "moving"
+              },
+              {
+                "label": "Emergency expenses",
+                "value": "emergencyExpense"
+              },
+              {
+                "label": "Debt consolidation",
+                "value": "debtConsolidation"
+              },
+              {
+                "label": "Other",
+                "value": "other"
+              },
+              {
+                "label": "Purchase & installation of solar power products",
+                "value": "solarPowerProducts"
+              },
+              {
+                "label": "Purchase & installation of external awnings or shutters Energy efficiency",
+                "value": "externalAwningsShutters"
+              },
+              {
+                "label": "Purchase & installation of a grey water system",
+                "value": "greyWaterSystem"
+              },
+              {
+                "label": "Purchase & installation of double glazing to an existing property",
+                "value": "doubleGlazingExistingProperty"
+              },
+              {
+                "label": "Energy efficient whitegoods",
+                "value": "energyEfficientWhitegoods"
+              },
+              {
+                "label": "Purchase electric car",
+                "value": "electricCar"
+              },
+              {
+                "label": "Other green products",
+                "value": "otherGreenProducts"
+              },
+              {
+                "label": "Vehicle expenses",
+                "value": "vehicleExpenses"
+              }
+            ],
+            "Purpose Vehicle Loan": [
+              {
+                "label": "Private (or over 50% private)",
+                "value": "private"
+              },
+              {
+                "label": "Business (or over 50% business)",
+                "value": "business"
+              }
+            ]
+          },
+          "include": false,
+          "metrics": "Loan Purpose",
+          "parameters": [
+            "Help family buy a home",
+            "Renovate",
+            "Pay for grandkids' education",
+            "Travel",
+            "Purchase a car",
+            "Meet medical expenses",
+            "Gift to family or other friend"
+          ],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": [
+            "interest-rate",
+            "flexible-features",
+            "certainty-repayments",
+            "other"
+          ],
+          "include": false,
+          "metrics": "Purchase Goal",
+          "parameters": [
+            "interest-rate",
+            "flexible-features",
+            "certainty-repayments"
+          ],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": [
+            "offset",
+            "redraw",
+            "no-application-fee",
+            "loan-split",
+            "repayment-holiday",
+            "additional-repayment"
+          ],
+          "include": false,
+          "metrics": "Primary Feature",
+          "parameters": [
+            "offset",
+            "redraw",
+            "no-application-fee",
+            "loan-split",
+            "repayment-holiday",
+            "additional-repayment"
+          ],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": [
+            "offset",
+            "redraw",
+            "no-application-fee",
+            "loan-split",
+            "repayment-holiday",
+            "additional-repayment"
+          ],
+          "include": false,
+          "metrics": "Secondary Feature",
+          "parameters": [
+            "offset",
+            "redraw",
+            "no-application-fee",
+            "loan-split",
+            "repayment-holiday",
+            "additional-repayment"
+          ],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": [
+            "Sell/downsize security property",
+            "Sell other assets",
+            "Repayment from superannuation",
+            "Family or friends to repay",
+            "Others"
+          ],
+          "include": false,
+          "metrics": "Primary Repayment Intention",
+          "parameters": [
+            "Sell/downsize security property",
+            "Repayment from superannuation",
+            "Family or friends to repay"
+          ],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": [
+            "Sell/downsize security property",
+            "Sell other assets",
+            "Repayment from superannuation",
+            "Family or friends to repay",
+            "Others"
+          ],
+          "include": false,
+          "metrics": "Secondary Repayment Intention",
+          "parameters": [
+            "Sell/downsize security property",
+            "Repayment from superannuation",
+            "Family or friends to repay"
+          ],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": ["Yes", "No"],
+          "include": false,
+          "metrics": "Refinancing",
+          "parameters": ["Yes", "No"],
+          "relation": "IN"
+        },
+        {
+          "include": false,
+          "metrics": "Refinancing Years Left",
+          "parameters": "10",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "At Least $500,000 Assets",
+          "parameters": "Yes",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Receive Pension or Centrelink",
+          "parameters": "No",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Receive Pension Loans Scheme",
+          "parameters": "No",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Refinancing Amount Outstanding",
+          "parameters": "$100,000",
+          "relation": "NO MORE THAN"
+        }
+      ],
+      "Responsible Lending Flags": [
+        {
+          "include": false,
+          "metrics": "Number of Dishonours",
+          "parameters": "1",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Gambling Expenditure - Monthly",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Gambling Expenditure % - Monthly",
+          "parameters": "80%",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Collection and Consolidation - Monthly",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Overdrawn - Monthly",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME001",
+          "include": false,
+          "metrics": "# Of Identified Salary Sources",
+          "parameters": "1",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME002",
+          "include": false,
+          "metrics": "Average Monthly Amount From Salary",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME003",
+          "include": false,
+          "metrics": "Salary Has Been Stable For (Months)",
+          "parameters": "1",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME004",
+          "include": false,
+          "metrics": "Other Possible Income Monthly",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME005",
+          "include": false,
+          "metrics": "Youth Allowance Monthly",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME006",
+          "include": false,
+          "metrics": "Rental Assistance Monthly",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME007",
+          "include": false,
+          "metrics": "Misc Government Services Monthly",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME008",
+          "include": false,
+          "metrics": "Average Monthly Amount",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME009",
+          "include": false,
+          "metrics": "# Of Identified Companies",
+          "parameters": "1",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME010",
+          "include": false,
+          "metrics": "Total Credit Card Limit",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME011",
+          "include": false,
+          "metrics": "Total Credit Card Balance",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME012",
+          "include": false,
+          "metrics": "Monthly Spend On Non-Discretionary Expenses",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME013",
+          "include": false,
+          "metrics": "% Of Spend On Non-Discretionary Expenses",
+          "parameters": "80%",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME014",
+          "include": false,
+          "metrics": "Monthly Spend On Discretionary Expenses",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME015",
+          "include": false,
+          "metrics": "% Of Spend On Discretionary Expenses",
+          "parameters": "80%",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME016",
+          "include": false,
+          "metrics": "Monthly Spend On Other Expenses",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME017",
+          "include": false,
+          "metrics": "# Of Sacc Loans",
+          "parameters": "1",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME018",
+          "include": false,
+          "metrics": "% Of Income Withdrawn Via Atm",
+          "parameters": "80%",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME019",
+          "include": false,
+          "metrics": "# Of Financial Dishonours",
+          "parameters": "1",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME020",
+          "include": false,
+          "metrics": "% Of Income Spent On High Risk Activities",
+          "parameters": "80%",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME021",
+          "include": false,
+          "metrics": "Total Spend On High Risk Activities",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "availableParameters": ["Yes", "No"],
+          "basiqId": "BSQME022",
+          "include": false,
+          "metrics": "Has Recent Changes To Salary Circumstances",
+          "parameters": ["Yes", "No"],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": ["Yes", "No"],
+          "basiqId": "BSQME023",
+          "include": false,
+          "metrics": "Has Received Crisis Support Payments",
+          "parameters": ["Yes", "No"],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": ["Yes", "No"],
+          "basiqId": "BSQME024",
+          "include": false,
+          "metrics": "Has Superannuation Credits",
+          "parameters": ["Yes", "No"],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": ["Yes", "No"],
+          "basiqId": "BSQME025",
+          "include": false,
+          "metrics": "Has Cash Advances",
+          "parameters": ["Yes", "No"],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": ["Yes", "No"],
+          "basiqId": "BSQME026",
+          "include": false,
+          "metrics": "Has Redraws",
+          "parameters": ["Yes", "No"],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": ["Yes", "No"],
+          "basiqId": "BSQME027",
+          "include": false,
+          "metrics": "Has High-Cost Finance",
+          "parameters": ["Yes", "No"],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": ["Yes", "No"],
+          "basiqId": "BSQME028",
+          "include": false,
+          "metrics": "Missing Non-Discretionary Expenses: Groceries",
+          "parameters": ["Yes", "No"],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": ["Yes", "No"],
+          "basiqId": "BSQME029",
+          "include": false,
+          "metrics": "Missing Non-Discretionary Expenses: Telecommunication",
+          "parameters": ["Yes", "No"],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": ["Yes", "No"],
+          "basiqId": "BSQME030",
+          "include": false,
+          "metrics": "Missing Non-Discretionary Expenses: Utilities",
+          "parameters": ["Yes", "No"],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": ["Yes", "No"],
+          "basiqId": "BSQME031",
+          "include": false,
+          "metrics": "Has Unemployment Benefit",
+          "parameters": ["Yes", "No"],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": ["Yes", "No"],
+          "basiqId": "BSQME032",
+          "include": false,
+          "metrics": "Receives Child Support",
+          "parameters": ["Yes", "No"],
+          "relation": "IN"
+        },
+        {
+          "basiqId": "BSQME033",
+          "include": false,
+          "metrics": "Average Income Monthly",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME034",
+          "include": false,
+          "metrics": "Average Outgoings Monthly",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME035",
+          "include": false,
+          "metrics": "Total Income Has Been Stable For (Months)",
+          "parameters": "1",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME036",
+          "include": false,
+          "metrics": "Median Monthly Amount From Salary",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME037",
+          "include": false,
+          "metrics": "Median Income Monthly",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME039",
+          "include": false,
+          "metrics": "Average Outgoings Excluding Liabilities",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME040",
+          "include": false,
+          "metrics": "Average Monthly Credits",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME041",
+          "include": false,
+          "metrics": "Average Monthly Debits",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME042",
+          "include": false,
+          "metrics": "# Of Recent Income Sources",
+          "parameters": "1",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME043",
+          "include": false,
+          "metrics": "# Of Ongoing Regular Income Sources",
+          "parameters": "1",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME045",
+          "include": false,
+          "metrics": "Total Income Has Been Secure For (Months)",
+          "parameters": "1",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "basiqId": "BSQME046",
+          "include": false,
+          "metrics": "Average Monthly Ongoing Amount To Lenders",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "availableParameters": ["Yes", "No"],
+          "basiqId": "BSQME047",
+          "include": false,
+          "metrics": "Has Unshared Mortgage Account",
+          "parameters": ["Yes", "No"],
+          "relation": "IN"
+        },
+        {
+          "basiqId": "BSQME048",
+          "include": false,
+          "metrics": "Ongoing Monthly Mortgage Repayment",
+          "parameters": "$3,000",
+          "relation": "NO MORE THAN"
+        }
+      ]
+    },
+    "Profit & Loss": {
+      "Add Backs": [
+        {
+          "general": true,
+          "include": false,
+          "metrics": "Estimated Values",
+          "parameters": "$0",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": true,
+          "metrics": "Total Add Backs Values",
+          "parameters": "$0",
+          "relation": "NO MORE THAN"
+        }
+      ],
+      "Aggregate": [
+        {
+          "include": false,
+          "metrics": "Total Income inc Add Backs",
+          "parameters": "$1,700",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Net Profit",
+          "parameters": "$1,587",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Net Profit Margin Ratio",
+          "parameters": "$50,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Net Profit After Tax",
+          "parameters": "$50,000",
+          "relation": "NO MORE THAN"
+        }
+      ],
+      "Total Expenses": [
+        {
+          "include": false,
+          "metrics": "Total Expenses",
+          "parameters": "$0",
+          "relation": "NO MORE THAN"
+        }
+      ],
+      "Total Income": [
+        {
+          "include": false,
+          "metrics": "Total Income",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        }
+      ]
+    },
+    "Serviceability": {
+      "Aggregate": [
+        {
+          "include": false,
+          "metrics": "Total Gross Income",
+          "parameters": "$1,700",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Total Net Income",
+          "parameters": "$1,587",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Total Net Income (NG PR)",
+          "parameters": "$1,587",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Total Net Income (NG ER)",
+          "parameters": "$1,587",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Total Expenses",
+          "parameters": "$50,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Total Debts",
+          "parameters": "$50,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "NIS",
+          "parameters": "$1",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "NIS (NG PR)",
+          "parameters": "$1",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "NIS (NG ER)",
+          "parameters": "$1",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "DSR",
+          "parameters": "100%",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "DSR (incl. Liv exp)",
+          "parameters": "100%",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "DSR (less rent)",
+          "parameters": "100%",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "DSR (Net - incl. Liv exp)",
+          "parameters": "100%",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "DSR NG ER (Net - incl. Liv exp)",
+          "parameters": "100%",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "DSR (excl. Liv exp)",
+          "parameters": "100%",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "DSR (Net - excl. Liv exp)",
+          "parameters": "100%",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "DSR NG ER (Net - excl. Liv exp)",
+          "parameters": "100%",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "LTI (Gross Income)",
+          "parameters": "5",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "LTI (Exposure)",
+          "parameters": "5",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "DTI (Gross Income)",
+          "parameters": "5",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "LTI (Non-weighted)",
+          "parameters": "5",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "DTI (Non-weighted)",
+          "parameters": "5",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Deductible Interest PR",
+          "parameters": "$1",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Deductible Interest ER",
+          "parameters": "$1",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "NDI NG",
+          "parameters": "$1",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Expenses",
+          "parameters": "$1",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Surplus",
+          "parameters": "$1",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "NIS Ratio",
+          "parameters": "5",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "NIS Ratio NG PR",
+          "parameters": "5",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "NIS Ratio NG ER",
+          "parameters": "5",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "NSR Ratio NG PR",
+          "parameters": "5",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "NSR Ratio NG ER",
+          "parameters": "5",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "NDI Ratio",
+          "parameters": "5",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "NDI Ratio (net / debt payments)",
+          "parameters": "5",
+          "relation": "NO LESS THAN"
+        }
+      ],
+      "IncomeEmployment": [
+        {
+          "availableParameters": [
+            "pAYG",
+            "selfEmployed",
+            "Unemployed",
+            "Casual"
+          ],
+          "include": false,
+          "metrics": "Job Type",
+          "parameters": ["pAYG", "selfEmployed"],
+          "relation": "IN"
+        },
+        {
+          "availableParameters": ["fullTime", "partTime", "contract", "casual"],
+          "include": false,
+          "metrics": "Job Basis",
+          "parameters": ["fullTime", "partTime"],
+          "relation": "IN"
+        },
+        {
+          "include": false,
+          "metrics": "Latest Job Commencement",
+          "parameters": "90 days",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Base Gross Income",
+          "parameters": "$4,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Base Net Income",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Additional Gross Income",
+          "parameters": "$4,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Additional Net Income",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Additional %",
+          "parameters": "50%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Additional % Gross Income",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Additional % Net Income",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "VE Gross Income Verified",
+          "parameters": "$4,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Gross %",
+          "parameters": "50%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Gross % Income Verified",
+          "parameters": "$4,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Bonus & Commission Verified",
+          "parameters": "$4,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Bonus & Commission %",
+          "parameters": "50%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Bonus & Commission % Income Verified",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "OverTime Verified",
+          "parameters": "$4,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "OverTime %",
+          "parameters": "50%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "OverTime % Income Verified",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Allowance Verified",
+          "parameters": "$4,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Allowance %",
+          "parameters": "50%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Allowance % Income Verified",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Foreign Employment Payment Verified",
+          "parameters": "$4,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Foreign Employment Payment %",
+          "parameters": "50%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Foreign Employment Payment % Income Verified",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Exempt Foreign Income Verified",
+          "parameters": "$4,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Exempt Foreign %",
+          "parameters": "50%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Exempt Foreign % Income Verified",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Voluntary Agreement Verified",
+          "parameters": "$4,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Voluntary Agreement %",
+          "parameters": "50%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Voluntary Agreement % Income Verified",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Labour Hire Payments Verified",
+          "parameters": "$4,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Labour Hire Payments %",
+          "parameters": "50%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Labour Hire Payments % Income Verified",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Cdep Amount Verified",
+          "parameters": "$4,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Cdep Amount %",
+          "parameters": "50%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Cdep Amount % Income Verified",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Director Fees Verified",
+          "parameters": "$4,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Director Fees %",
+          "parameters": "50%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Director Fees % Income Verified",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Other Specified Payments Verified",
+          "parameters": "$4,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Other Specified Payments %",
+          "parameters": "50%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Other Specified Payments % Income Verified",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Total Net Income from Bank Statement",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Total Gross Income Verified",
+          "parameters": "$3,500",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "jobType": "pAYG",
+          "metrics": "Payslips",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "jobType": "pAYG",
+          "metrics": "Income Bank Statement",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "jobType": "selfEmployed",
+          "metrics": "2 Years Financials",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "jobType": "selfEmployed",
+          "metrics": "2 Years Tax Returns (Business)",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "jobType": "selfEmployed",
+          "metrics": "2 Years Tax Returns (Individual)",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Superannuation",
+          "parameters": "11%",
+          "relation": "REQUIRE"
+        }
+      ],
+      "IncomeOther": [
+        {
+          "availableParameters": [
+            {
+              "label": "Interest income",
+              "value": "interest"
+            },
+            {
+              "label": "Investment",
+              "value": "investment"
+            },
+            {
+              "label": "Property Rental",
+              "value": "propertyRental"
+            },
+            {
+              "label": "Property Rental (net)",
+              "value": "netPropertyRental"
+            },
+            {
+              "label": "Pension",
+              "value": "pension"
+            },
+            {
+              "label": "Family Allowance",
+              "value": "familyAllowance"
+            },
+            {
+              "label": "Foreign sourced",
+              "value": "foreignSourced"
+            },
+            {
+              "label": "Superannuation",
+              "value": "superannuation"
+            },
+            {
+              "label": "Work Allowance",
+              "value": "workAllowance"
+            },
+            {
+              "label": "Workers compensation",
+              "value": "workersCompensation"
+            },
+            {
+              "label": "Child support / maintenance",
+              "value": "childSupport"
+            },
+            {
+              "label": "Carer payment",
+              "value": "carer"
+            },
+            {
+              "label": "Family Allowance Tax A & B",
+              "value": "familyAllowanceTaxAB"
+            },
+            {
+              "label": "Rental Assistance",
+              "value": "rentalAssistance"
+            },
+            {
+              "label": "Disability Income",
+              "value": "disabilityIncome"
+            },
+            {
+              "label": "Salary Continuance Insurance Payments",
+              "value": "salaryContinuanceInsurancePayments"
+            },
+            {
+              "label": "Maternity Leave income",
+              "value": "maternityLeaveIncome"
+            },
+            {
+              "label": "Site Allowance",
+              "value": "siteAllowance"
+            },
+            {
+              "label": "Other",
+              "value": "other"
+            },
+            {
+              "label": "Other (gross)",
+              "value": "otherGross"
+            },
+            {
+              "label": "Short Term Rentals",
+              "value": "shortTermRentals"
+            },
+            {
+              "label": "Government Benefit",
+              "value": "governmentBenefit"
+            },
+            {
+              "label": "Car Allowance",
+              "value": "carAllowance"
+            },
+            {
+              "label": "Company Car",
+              "value": "companyCar"
+            },
+            {
+              "label": "Commercial Rental Income",
+              "value": "commercialRentalIncome"
+            }
+          ],
+          "include": false,
+          "metrics": "Income Type",
+          "parameters": [],
+          "relation": "IN",
+          "weighting": {
+            "carAllowance": "0%",
+            "carer": "0%",
+            "childSupport": "0%",
+            "commercialRentalIncome": "0%",
+            "companyCar": "0%",
+            "familyAllocance": "0%",
+            "foreignSourced": "0%",
+            "interest": "0%",
+            "investment": "0%",
+            "netPropertyRental": "0%",
+            "other": "0%",
+            "pension": "0%",
+            "propertyRental": "0%",
+            "superannuation": "0%",
+            "workAllowance": "0%",
+            "workersCompensation": "0%"
+          }
+        },
+        {
+          "include": false,
+          "metrics": "Total Income",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Additional %",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Additional % Other Income",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Income Bank Statement",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Line of Credit Expense": [
+        {
+          "include": false,
+          "metrics": "Repayment Amount",
+          "parameters": "$5,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Amount",
+          "parameters": "$20,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Limit",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Limit %",
+          "parameters": "5.1878155%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Adjusted Repayment",
+          "parameters": "$5,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Bank Statements of Loan",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Living Expense": [
+        {
+          "include": false,
+          "metrics": "Verified Expense Percentage",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Percentage Increase Allowed",
+          "parameters": "100",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Groceries",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Insurance",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Rent",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Subscription TV",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Telecommunications",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Utilities",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Education & Childcare",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Personal Care",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Department Stores",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Health",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Travel",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Home Improvement",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Entertainment",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Dining Out",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Pet Care",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Gyms & other memberships",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Retail",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Vehicles and Transport",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Uncategorised Debits",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP001",
+          "include": false,
+          "metrics": "ATM Withdrawals",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP002",
+          "include": false,
+          "metrics": "Automotive",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP003",
+          "include": false,
+          "metrics": "Cash Advances",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP004",
+          "include": false,
+          "metrics": "Childrens Retail and Gaming",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP005",
+          "include": false,
+          "metrics": "Collection Agencies",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP006",
+          "include": false,
+          "metrics": "Debt Interest Accrual",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP007",
+          "include": false,
+          "metrics": "Department Stores",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP008",
+          "include": false,
+          "metrics": "Dining Out",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP009",
+          "include": false,
+          "metrics": "Dishonours",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP010",
+          "include": false,
+          "metrics": "Donations",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP011",
+          "include": false,
+          "metrics": "Education and Childcare",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP012",
+          "include": false,
+          "metrics": "Entertainment",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP013",
+          "include": false,
+          "metrics": "External Transfers",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP014",
+          "include": false,
+          "metrics": "Gambling",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP015",
+          "include": false,
+          "metrics": "Government and Council Services",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP016",
+          "include": false,
+          "metrics": "Groceries",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP017",
+          "include": false,
+          "metrics": "Gyms and memberships",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP018",
+          "include": false,
+          "metrics": "Medical",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP019",
+          "include": false,
+          "metrics": "Home Improvement",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP020",
+          "include": false,
+          "metrics": "Insolvency",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP021",
+          "include": false,
+          "metrics": "Insurance",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP023",
+          "include": false,
+          "metrics": "Motor Finance",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP024",
+          "include": false,
+          "metrics": "Online Retail",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP025",
+          "include": false,
+          "metrics": "Other Finance",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP026",
+          "include": false,
+          "metrics": "Peer to Peer Finance",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP027",
+          "include": false,
+          "metrics": "Personal Care",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP028",
+          "include": false,
+          "metrics": "Pet Care",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP029",
+          "include": false,
+          "metrics": "Redraws",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP030",
+          "include": false,
+          "metrics": "Rent",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP031",
+          "include": false,
+          "metrics": "Retail",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP032",
+          "include": false,
+          "metrics": "Returns and Refunds",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP033",
+          "include": false,
+          "metrics": "Small Amount Lending",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP035",
+          "include": false,
+          "metrics": "Subscription Media and Software",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP036",
+          "include": false,
+          "metrics": "Telecommunication",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP038",
+          "include": false,
+          "metrics": "Travel",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP039",
+          "include": false,
+          "metrics": "Uncategorised Debits",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP040",
+          "include": false,
+          "metrics": "Utilities",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP041",
+          "include": false,
+          "metrics": "Vehicle and Transport",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP051",
+          "include": false,
+          "metrics": "Alcohol and Tobacco",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP052",
+          "include": false,
+          "metrics": "Sports and Hobbies",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP054",
+          "include": false,
+          "metrics": "Other Categorised",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP055",
+          "include": false,
+          "metrics": "Clothing and Footwear",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP056",
+          "include": false,
+          "metrics": "Mortgage Repayments",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "basiqId": "BSQEXP058",
+          "include": false,
+          "metrics": "Mortgage Transfers",
+          "parameters": "100%",
+          "relation": "NO LESS THAN"
+        }
+      ],
+      "Loan Expense - BNPL": [
+        {
+          "include": false,
+          "metrics": "Repayment Amount",
+          "parameters": "$5,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Amount",
+          "parameters": "$20,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Limit",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Limit %",
+          "parameters": "5.1878155%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Adjusted Repayment",
+          "parameters": "$5,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Bank Statements of Loan",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Loan Expense - Home Loan": [
+        {
+          "include": false,
+          "metrics": "Repayment Amount",
+          "parameters": "$5,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Amount",
+          "parameters": "$20,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Limit",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Amount excl. fees",
+          "parameters": "$100,000",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Evaluation Percentage",
+          "parameters": "100%",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Repayment Amount with Buffer",
+          "parameters": "3.00%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Repayment Amount with Reverting Buffer",
+          "parameters": "3.00%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Repayment Amount with Interest Floor",
+          "parameters": "5.00%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Bank Statements of Loan",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Loan Expense - Other": [
+        {
+          "include": false,
+          "metrics": "Repayment Amount",
+          "parameters": "$5,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Amount",
+          "parameters": "$20,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Limit",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Evaluation Percentage",
+          "parameters": "100%",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Bank Statements of Loan",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Loan Expense - Personal Loan": [
+        {
+          "include": false,
+          "metrics": "Repayment Amount",
+          "parameters": "$5,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Amount",
+          "parameters": "$20,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Limit",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Evaluation Percentage",
+          "parameters": "100%",
+          "relation": "EQUAL"
+        },
+        {
+          "include": false,
+          "metrics": "Repayment Amount with Buffer",
+          "parameters": "3.00%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Repayment Amount with Interest Floor",
+          "parameters": "5.00%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Bank Statements of Loan",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Store & Credit Card Expense": [
+        {
+          "include": false,
+          "metrics": "Repayment Amount",
+          "parameters": "$5,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Amount",
+          "parameters": "$20,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Limit",
+          "parameters": "$0",
+          "relation": "NO LESS THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Liability Limit %",
+          "parameters": "5.1878155%",
+          "relation": "REQUIRE"
+        },
+        {
+          "include": false,
+          "metrics": "Adjusted Repayment",
+          "parameters": "$5,000",
+          "relation": "NO MORE THAN"
+        },
+        {
+          "include": false,
+          "metrics": "Bank Statements of Loan",
+          "parameters": "Mandatory",
+          "relation": "REQUIRE"
+        }
+      ],
+      "Timeframe Preference": [
+        {
+          "availableParameters": ["Monthly", "Annually"],
+          "include": false,
+          "metrics": "Period of Time",
+          "parameters": ["Monthly"],
+          "relation": "EQUAL"
+        }
+      ]
+    }
+  }
+}

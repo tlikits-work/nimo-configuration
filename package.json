@@ -1,0 +1,9 @@
+{
+  "name": "nimo-configuration",
+  "version": "1.0.0",
+  "description": "This repository provides the ability to synchronize configurations across different environments.",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo \"Error: not yet implemented\" && exit 1"
+  }
+}
