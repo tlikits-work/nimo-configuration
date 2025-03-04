@@ -17,4 +17,5 @@ runs:
 
     # TODO: implement deploy logic
     - name: "Deploy to ${{ inputs.environment }}"
+      shell: bash
       run: echo "Deploying to ${{ inputs.environment }}"
