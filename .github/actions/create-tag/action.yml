@@ -1,8 +1,8 @@
 name: "Create Tag"
 description: "Create Tag"
 inputs:
-  github_token:
-    description: "Github token for tag"
+  github_ssh_private_key:
+    description: "SSH private key for read/write on git repository"
     required: true
   tag:
     description: "Tag Name"
@@ -11,10 +11,13 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ inputs.github_ssh_private_key }}
+
     - name: Create Tag
       uses: actions/github-script@v5
       with:
-        github-token: ${{ inputs.github_token }}
         script: |
           github.rest.git.createRef({
             owner: context.repo.owner,
