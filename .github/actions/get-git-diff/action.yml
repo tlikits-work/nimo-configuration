@@ -20,6 +20,7 @@ runs:
   steps:
     - name: Get git diff
       id: get_diff
+      shell: bash
       run: |
         git fetch origin
         diff_files=$(git diff --name-only ${{ inputs.base_sha }} ${{ inputs.head_sha }} -- ${{ inputs.path }})
