@@ -1,0 +1,16 @@
+name: "Deploy to ${{ inputs.environment }}"
+description: "Deploy to the environment"
+inputs:
+  environment:
+    description: "The deployment environment"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Get Latest Deployment SHA
+      uses: ./.github/actions/get-latest-deployment-sha
+      with:
+        environment: ${{ inputs.environment }}
+
+    - name: Deploy to ${{ inputs.environment }}
+      run: echo "Deploying to ${{ inputs.environment }}"
