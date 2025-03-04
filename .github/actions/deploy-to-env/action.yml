@@ -10,7 +10,7 @@ runs:
     - name: Get Latest Deployment SHA
       uses: ./.github/actions/get-latest-deployment-sha
       with:
-        environment: ${{ inputs.environment }}
+        environment: "${{ inputs.environment }}"
 
-    - name: Deploy to ${{ inputs.environment }}
+    - name: "Deploy to ${{ inputs.environment }}"
       run: echo "Deploying to ${{ inputs.environment }}"
