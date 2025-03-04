@@ -24,6 +24,7 @@ runs:
               environment: '${{ inputs.environment }}'
             })
             const items = listDeploymentsResult.data;
+            let sha = '';
             for (const item of items) {
               const listDeploymentStatusesResult = await github.rest.repos.listDeploymentStatuses({
                 owner: context.repo.owner,
@@ -33,11 +34,11 @@ runs:
               const statusItems = listDeploymentStatusesResult.data;
               const successStatusItem = statusItems.find(statusItem => statusItem.state === 'success');
               if (successStatusItem) {
-                core.setOutput('sha', item.sha);
+                sha = item.sha;
                 break;
               }
             }
-            core.setOutput('sha', '');
+            core.setOutput('sha', sha);
           } catch(error) {
             console.error(error);
             core.setFailed(error);
