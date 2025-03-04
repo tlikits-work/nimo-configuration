@@ -30,6 +30,8 @@ jobs:
     steps:
       - name: Code Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Deploy to development
         uses: ./.github/actions/deploy-to-env
@@ -45,6 +47,8 @@ jobs:
     steps:
       - name: Code Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Deploy to UAT
         uses: ./.github/actions/deploy-to-env
@@ -60,6 +64,8 @@ jobs:
     steps:
       - name: Code Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Deploy to Production
         uses: ./.github/actions/deploy-to-env

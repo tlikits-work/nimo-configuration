@@ -21,18 +21,16 @@ runs:
     - name: Git fetch
       shell: bash
       run: |
-        git diff --name-only ${{ inputs.base_sha }} ${{ inputs.head_sha }} -- ${{ inputs.path }}
-        diff_files=$(git diff --name-only ${{ inputs.base_sha }} ${{ inputs.head_sha }} -- ${{ inputs.path }})
-        echo "::set-output name=diff_files::$diff_files"
+        git fetch origin
 
     - name: Git diff
       shell: bash
       run: |
-        git diff --name-only ${{ inputs.base_sha }} ${{ inputs.head_sha }} -- ${{ inputs.path }}
+        git diff --name-only "${{ inputs.base_sha }}" "${{ inputs.head_sha }}" -- "${{ inputs.path }}"
 
     - name: Git diff
       id: get_diff
       shell: bash
       run: |
-        diff_files=$(git diff --name-only ${{ inputs.base_sha }} ${{ inputs.head_sha }} -- ${{ inputs.path }})
+        diff_files=$(git diff --name-only "${{ inputs.base_sha }}" "${{ inputs.head_sha }}" -- "${{ inputs.path }}")
         echo "::set-output name=diff_files::$diff_files"
