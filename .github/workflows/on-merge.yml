@@ -21,6 +21,7 @@ jobs:
 
   tag:
     runs-on: ubuntu-latest
+    permissions: write-all
     concurrency:
       group: version-tagging
     environment: tag
@@ -42,4 +43,4 @@ jobs:
         uses: ./.github/actions/trigger-tag-event
         with:
           workflow_id: on-tag.yml
-          tag: "v${{ steps.get_new_tag.outputs.tag_name }}"
+          tag: "${{ steps.get_new_tag.outputs.tag_name }}"
