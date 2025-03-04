@@ -1,5 +1,5 @@
 name: "Trigger Tag Event"
-description: "Trigger tag event via workflow_dispatch as tagging with GITHUB_TOKEN prevent upcoming event from being triggered"
+description: "Trigger tag event via workflow_dispatch"
 inputs:
   tag:
     description: "Tag for trigger"
@@ -7,17 +7,20 @@ inputs:
   workflow_id:
     description: 'Workflow that will be triggered'
     required: true
-  github_tokengithub_token:
-    description: "Github token for trigger workflow dispatch"
+  github_ssh_private_key:
+    description: "SSH private key for read/write on git repository"
     required: true
 
 runs:
   using: "composite"
   steps:
+    - uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ inputs.github_ssh_private_key }}
+
     - name: Trigger Tag Event
       uses: actions/github-script@v5
       with:
-        github-token: ${{ inputs.github_token }}
         script: |
           try {
             const result = await github.rest.actions.createWorkflowDispatch({

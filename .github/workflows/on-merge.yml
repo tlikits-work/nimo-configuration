@@ -36,12 +36,12 @@ jobs:
       - name: Create tag
         uses: ./.github/actions/create-tag
         with:
-          github_token: "${{ secrets.REPOSITORY_GITHUB_TOKEN }}"
+          github_ssh_private_key: "${{ secrets.REPOSITORY_SSH_PRIVATE_KEY }}"
           tag: "v${{ steps.get_new_tag.outputs.tag_name }}"
 
       - name: Trigger Deployment
         uses: ./.github/actions/trigger-tag-event
         with:
-          github_token: "${{ secrets.REPOSITORY_GITHUB_TOKEN }}"
+          github_ssh_private_key: "${{ secrets.REPOSITORY_SSH_PRIVATE_KEY }}"
           workflow_id: on-tag.yml
           tag: "v${{ steps.get_new_tag.outputs.tag_name }}"
