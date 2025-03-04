@@ -18,11 +18,21 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Get git diff
+    - name: Git fetch
+      shell: bash
+      run: |
+        git diff --name-only ${{ inputs.base_sha }} ${{ inputs.head_sha }} -- ${{ inputs.path }}
+        diff_files=$(git diff --name-only ${{ inputs.base_sha }} ${{ inputs.head_sha }} -- ${{ inputs.path }})
+        echo "::set-output name=diff_files::$diff_files"
+
+    - name: Git diff
+      shell: bash
+      run: |
+        git diff --name-only ${{ inputs.base_sha }} ${{ inputs.head_sha }} -- ${{ inputs.path }}
+
+    - name: Git diff
       id: get_diff
       shell: bash
       run: |
-        git fetch origin
-        git diff --name-only ${{ inputs.base_sha }} ${{ inputs.head_sha }} -- ${{ inputs.path }}
         diff_files=$(git diff --name-only ${{ inputs.base_sha }} ${{ inputs.head_sha }} -- ${{ inputs.path }})
         echo "::set-output name=diff_files::$diff_files"
