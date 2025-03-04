@@ -4,11 +4,16 @@ inputs:
   environment:
     description: "The deployment environment"
     required: true
+outputs:
+  sha:
+    description: "The generated new version tag"
+    value: ${{ steps.get_latest_sha.outputs.sha }}
 
 runs:
   using: "composite"
   steps:
     - name: Get Latest Deployment SHA
+      id: get_latest_sha
       uses: actions/github-script@v5
       with:
         script: |
@@ -28,13 +33,12 @@ runs:
               const statusItems = listDeploymentStatusesResult.data;
               const successStatusItem = statusItems.find(statusItem => statusItem.state === 'success');
               if (successStatusItem) {
-                console.log(item.sha);
-                return item.sha;
+                core.setOutput('sha', item.sha);
                 break;
               }
             }
-            return '';
+            core.setOutput('sha', '');
           } catch(error) {
             console.error(error);
             core.setFailed(error);
-            return '';
+          }

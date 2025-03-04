@@ -2,7 +2,7 @@ name: "Create Tag"
 description: "Create Tag"
 inputs:
   tag:
-    description: "Tag Name"
+    description: "The name of the tag that will be created"
     required: true
 
 runs:

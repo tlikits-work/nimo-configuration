@@ -29,17 +29,17 @@ jobs:
       - name: Code Checkout
         uses: actions/checkout@v4
 
-      - name: Get new Tag
-        id: get_new_tag
-        uses: ./.github/actions/get-new-tag
+      - name: Generate Next Tag
+        id: generate_next_tag
+        uses: ./.github/actions/tag-generate
 
       - name: Create tag
-        uses: ./.github/actions/create-tag
+        uses: ./.github/actions/tag-create
         with:
-          tag: "${{ steps.get_new_tag.outputs.tag_name }}"
+          tag: "${{ steps.generate_next_tag.outputs.tag_name }}"
 
       - name: Trigger Deployment
-        uses: ./.github/actions/trigger-tag-event
+        uses: ./.github/actions/deploy-on-tag
         with:
-          workflow_id: on-tag.yml
-          tag: "${{ steps.get_new_tag.outputs.tag_name }}"
+          workflow_id: on-deploy.yml
+          tag: "${{ steps.generate_next_tag.outputs.tag_name }}"
