@@ -7,13 +7,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Code Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-
-    - name: Use Node.js 22.x
-      uses: ./.github/actions/use-node
+    - uses: ./.github/actions/use-node
 
     - name: Get Latest Deployment SHA
       id: get_latest_deployment_sha
