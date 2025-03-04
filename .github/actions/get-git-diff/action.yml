@@ -22,5 +22,10 @@ runs:
       id: get_diff
       shell: bash
       run: |
-        diff_files=$(git diff --name-only "${{ inputs.base_sha }}" "${{ inputs.head_sha }}" -- "${{ inputs.path }}")
-        echo "::set-output name=diff_files::$diff_files"
+        git diff --name-only "${{ inputs.base_sha }}" "${{ inputs.head_sha }}" -- "${{ inputs.path }}" >> diff_files.txt
+
+    - name: Upload Diff Files Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: diff-files
+        path: diff_files.txt
