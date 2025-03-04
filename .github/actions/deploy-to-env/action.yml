@@ -20,7 +20,7 @@ runs:
       id: get_config_files_diff
       uses: ./.github/actions/get-git-diff
       with:
-        base_sha: ${{ steps.get_latest_deployment_sha.outputs.diff_files }}
+        base_sha: ${{ steps.get_latest_deployment_sha.outputs.sha }}
         head_sha: ${{ github.ref }}
         # path: ./config
         path: ./.github/actions
