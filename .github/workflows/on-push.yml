@@ -17,3 +17,17 @@ jobs:
 
       - name: Validate
         run: npm run validate
+
+  deploy-dev:
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/use-node
+
+      - name: Deploy to development
+        uses: ./.github/actions/deploy-to-env
+        with:
+          environment: development
