@@ -1,0 +1,40 @@
+name: "Get Latest Deployment SHA"
+description: "Run github script to get the latest deployment SHA"
+inputs:
+  environment:
+    description: "The deployment environment"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Get Latest Deployment SHA
+      uses: actions/github-script@v5
+      with:
+        script: |
+          try {
+            const listDeploymentsResult = await github.rest.repos.listDeployments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              environment: inputs.environment
+            })
+            const items = listDeploymentsResult.data;
+            for (const item of items) {
+              const listDeploymentStatusesResult = await github.rest.repos.listDeploymentStatuses({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                deployment_id: item.id,
+              });
+              const statusItems = listDeploymentStatusesResult.data;
+              const successStatusItem = statusItems.find(statusItem => statusItem.state === 'success');
+              if (successStatusItem) {
+                console.log(item.sha);
+                return item.sha;
+                break;
+              }
+            }
+            return '';
+          } catch(error) {
+            console.error(error);
+            core.setFailed(error);
+            return '';

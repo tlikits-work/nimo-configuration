@@ -1,0 +1,20 @@
+name: On Push
+run-name: "[On Push] ${{ github.event.head_commit.message }}"
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22.x
+        uses: ./.github/actions/use-node
+
+      - name: Validate
+        run: npm run validate
