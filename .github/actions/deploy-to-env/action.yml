@@ -18,7 +18,7 @@ runs:
 
     - name: Get Config Files Diff
       id: get_config_files_diff
-      uses: ./.github/actions/get-git-fif
+      uses: ./.github/actions/get-git-diff
       with:
         base_sha: ${{ steps.get_latest_deployment_sha.outputs.diff_files }}
         head_sha: ${{ github.ref }}
