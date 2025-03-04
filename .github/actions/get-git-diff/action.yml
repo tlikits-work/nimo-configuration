@@ -13,7 +13,7 @@ inputs:
 outputs:
   diff_files:
     description: "The list of different files"
-    value: ${{ steps.get_diff.outputs.diff_files }}
+    value: ${{ steps.get_diff.outputs.DIFF_FILES }}
 
 runs:
   using: "composite"
@@ -24,4 +24,4 @@ runs:
       run: |
         git fetch origin
         diff_files=$(git diff --name-only ${{ inputs.base_sha }} ${{ inputs.head_sha }} -- ${{ inputs.path }})
-        echo "::set-output name=diff_files::$diff_files"
+        echo "DIFF_FILES='$diff_files'" >> $GITHUB_OUTPUT
