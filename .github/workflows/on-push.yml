@@ -1,5 +1,5 @@
-name: On Push
-run-name: "[On Push] ${{ github.event.head_commit.message }}"
+name: On Push Workflow
+run-name: "On Push - ${{ github.event.head_commit.message }}"
 
 on:
   push:

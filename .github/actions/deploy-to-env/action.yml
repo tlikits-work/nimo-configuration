@@ -11,11 +11,23 @@ runs:
       uses: ./.github/actions/use-node
 
     - name: Get Latest Deployment SHA
+      id: get_latest_deployment_sha
       uses: ./.github/actions/get-latest-deployment-sha
       with:
         environment: "${{ inputs.environment }}"
 
+    - name: Get Config Files Diff
+      id: get_config_files_diff
+      uses: ./.github/actions/get-git-fif
+      with:
+        base_sha: ${{ steps.get_latest_deployment_sha.outputs.diff_files }}
+        head_sha: ${{ github.ref }}
+        # path: ./config
+        path: ./.github/actions
+
     # TODO: implement deploy logic
     - name: "Deploy to ${{ inputs.environment }}"
       shell: bash
-      run: echo "Deploying to ${{ inputs.environment }}"
+      run: |
+        echo "Deploying to ${{ inputs.environment }}"
+        echo "${{ steps.get_config_files_diff.outputs.diff_files }}"
