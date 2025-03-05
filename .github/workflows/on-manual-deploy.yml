@@ -15,9 +15,12 @@ on:
           - production
       is_force_deploy:
         required: true
-        description: Force deploy will re-sync the whole configuration instead of just those that being different from last deployment
-        default: false
-        type: boolean
+        description: Re-deploy all configuration
+        type: choice
+        default: "false"
+        options:
+          - true
+          - false
 
 jobs:
   validate:
