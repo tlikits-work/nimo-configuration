@@ -1,0 +1,80 @@
+name: "Deploy"
+description: "Deploy to the environment"
+inputs:
+  role_to_assume:
+    description: ""
+    required: true
+  aws_region:
+    description: ""
+    required: true
+  is_force_deploy:
+    description: "Force deploy will re-sync the whole configuration instead of just those that being different from last deployment"
+    default: "false"
+  environment:
+    description: "The deployment environment"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - uses: ./.github/actions/use-node
+
+    - name: Get Latest Deployment SHA
+      uses: ./.github/actions/get-latest-deployment-sha
+      id: get_latest_deployment_sha
+      if: ${{ inputs.is_force_deploy == 'false' }}
+      with:
+        environment: "${{ inputs.environment }}"
+
+    - name: Get Diff Config Files
+      uses: ./.github/actions/get-diff-files
+      if: ${{ inputs.is_force_deploy == 'false' }}
+      with:
+        base_sha: ${{ steps.get_latest_deployment_sha.outputs.sha }}
+        head_sha: ${{ github.ref }}
+        path: config
+        file_name: diff.txt
+        artifact_name: diff-file
+
+    - name: Get All Config Files
+      uses: ./.github/actions/get-all-files
+      if: ${{ inputs.is_force_deploy == 'true' }}
+      with:
+        path: config
+        file_name: diff.txt
+        artifact_name: diff-file
+
+    - name: Download Diff Files Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: diff-file
+        path: ./
+
+    - name: Configure aws credentials
+      id: creds
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: ${{ inputs.role_to_assume }}
+        role-session-name: nimo
+        aws-region: ${{ inputs.aws_region }}
+        output-credentials: true
+
+    - name: "Configure AWS Profile"
+      shell: bash
+      run: |
+        mkdir -p ~/.aws
+        echo "[nimo]" >> ~/.aws/credentials
+        echo "aws_access_key_id=${{ steps.creds.outputs.aws-access-key-id }}" >> ~/.aws/credentials
+        echo "aws_secret_access_key=${{ steps.creds.outputs.aws-secret-access-key }}" >> ~/.aws/credentials
+        echo "aws_session_token=${{ steps.creds.outputs.aws-session-token }}" >> ~/.aws/credentials
+        echo "region=${{ inputs.aws_region }}" >> ~/.aws/credentials
+
+    - name: Verify AWS CLI Configuration
+      shell: bash
+      run: aws sts get-caller-identity --profile nimo
+
+    - name: "Deploy to ${{ inputs.environment }}"
+      shell: bash
+      run: |
+        npm ci
+        npx turtle-tools -V
+        npx turtle-tools config-sync sync --aws-profile nimo

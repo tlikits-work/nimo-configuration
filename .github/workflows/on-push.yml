@@ -1,0 +1,40 @@
+name: On Push Workflow
+run-name: "[On Push] ${{ github.event.head_commit.message }}"
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/use-node
+
+      - name: Validate
+        run: npm run validate
+
+  # For Test
+  deploy-dev:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    needs: validate
+    environment: development
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: ./.github/actions/use-node
+
+      - name: Deploy to development
+        uses: ./.github/actions/deploy-to-env
+        with:
+          environment: development
+          role_to_assume: ${{ secrets.SAM_DEPLOYMENT_ROLE_DEVELOPMENT }}
+          aws_region: ${{ secrets.AWS_REGION }}

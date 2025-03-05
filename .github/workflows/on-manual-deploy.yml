@@ -1,0 +1,54 @@
+name: Manual Deploy
+run-name: "[Manual Deploy] Deploy to ${{ github.event.inputs.environment }}: ${{ github.event.ref }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        description: Environment to deploy
+        default: development
+        type: choice
+        options:
+          - development
+          - uat
+          - production
+      is_force_deploy:
+        required: true
+        description: Re-deploy all configuration
+        type: choice
+        default: "false"
+        options:
+          - true
+          - false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/use-node
+
+      - name: Validate
+        run: npm run validate
+
+  deploy:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    needs: validate
+    concurrency:
+      group: development-deploy
+    environment: ${{ github.event.inputs.environment }}
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - name: "Deploy to ${{ github.event.inputs.environment }}"
+        uses: ./.github/actions/deploy-to-env
+        with:
+          environment: ${{ github.event.inputs.environment }}
+          is_force_deploy: ${{ github.event.inputs.is_force_deploy }}
+          role_to_assume: ${{ secrets.SAM_DEPLOYMENT_ROLE_DEVELOPMENT }} ## TODO: update this for each env
+          aws_region: ${{ secrets.AWS_REGION }}
