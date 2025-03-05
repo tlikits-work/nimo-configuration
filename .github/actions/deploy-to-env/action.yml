@@ -16,13 +16,15 @@ inputs:
   artifact_name:
     description: "Name of artifact that store the list of the updating configuration files"
     required: true
-    default: diff-file
+    default: changed-file-list
   artifact_file_name:
     description: "Name of artifact file - should be diff.txt for turtle-tools to read for update the configuration files"
     required: true
     default: diff.txt
 runs:
   using: "composite"
+  env:
+    artifact_name_by_env: "${{ inputs.artifact_name }}.${{ inputs.environment }}"
   steps:
     - name: Use Node
       uses: ./.github/actions/use-node
@@ -41,7 +43,7 @@ runs:
         head_sha: ${{ github.ref }}
         path: config
         file_name: ${{ inputs.artifact_file_name }}
-        artifact_name: ${{ inputs.artifact_name }}
+        artifact_name: ${{ env.artifact_name_by_env }}
 
     - name: Get All Config Files
       uses: ./.github/actions/get-all-files
@@ -49,12 +51,12 @@ runs:
       with:
         path: config
         file_name: ${{ inputs.artifact_file_name }}
-        artifact_name: ${{ inputs.artifact_name }}
+        artifact_name: ${{ env.artifact_name_by_env }}
 
     - name: Download Diff Files Artifact
       uses: actions/download-artifact@v4
       with:
-        name: ${{ inputs.artifact_name }}
+        name: ${{ env.artifact_name_by_env }}
         path: ./
 
     - name: Configure aws credentials

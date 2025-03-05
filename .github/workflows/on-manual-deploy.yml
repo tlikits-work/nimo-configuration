@@ -24,6 +24,7 @@ on:
 
 jobs:
   validate:
+    name: Validate
     runs-on: ubuntu-latest
     steps:
       - name: Code Checkout
@@ -39,7 +40,7 @@ jobs:
     permissions: write-all
     needs: validate
     concurrency:
-      group: development-deploy
+      group: deploy-${{ github.event.inputs.environment }}
     environment: ${{ github.event.inputs.environment }}
     steps:
       - name: Code Checkout
