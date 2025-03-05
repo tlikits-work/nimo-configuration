@@ -13,14 +13,15 @@ runs:
     - uses: ./.github/actions/use-node
 
     - name: Get Latest Deployment SHA
-      id: get_latest_deployment_sha
       uses: ./.github/actions/get-latest-deployment-sha
+      id: get_latest_deployment_sha
+      if: "${{ !inputs.is_force_deploy }}"
       with:
         environment: "${{ inputs.environment }}"
 
     - name: Get Diff Config Files
       uses: ./.github/actions/get-diff-files
-      if: "${{ inputs.is_force_deploy == false }}"
+      if: "${{ !inputs.is_force_deploy }}"
       with:
         base_sha: ${{ steps.get_latest_deployment_sha.outputs.sha }}
         head_sha: ${{ github.ref }}
@@ -31,7 +32,7 @@ runs:
 
     - name: Get All Config Files
       uses: ./.github/actions/get-all-files
-      if: "${{ inputs.is_force_deploy == true }}"
+      if: "${{ inputs.is_force_deploy }}"
       with:
         path: ./.github/actions
         file_name: diff.txt
