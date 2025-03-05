@@ -38,3 +38,4 @@ runs:
       run: |
         echo "Deploying to ${{ inputs.environment }}"
         cat ./diff.txt
+        ls
