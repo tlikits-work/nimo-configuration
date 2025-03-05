@@ -2,10 +2,10 @@ name: "Deploy"
 description: "Deploy to the environment"
 inputs:
   role_to_assume:
-    description: ""
+    description: "AWS Role which will be assumed for write access to database/storage service in AWS"
     required: true
   aws_region:
-    description: ""
+    description: "AWS Region"
     required: true
   is_force_deploy:
     description: "Force deploy will re-sync the whole configuration instead of just those that being different from last deployment"
@@ -13,11 +13,19 @@ inputs:
   environment:
     description: "The deployment environment"
     required: true
+  artifact_name:
+    description: "Name of artifact that store the list of the updating configuration files"
+    required: true
+    default: diff-file
+  artifact_file_name:
+    description: "Name of artifact file - should be diff.txt for turtle-tools to read for update the configuration files"
+    required: true
+    default: diff.txt
 runs:
   using: "composite"
   steps:
-    - uses: ./.github/actions/use-node
-
+    - name: Use Node
+      uses: ./.github/actions/use-node
     - name: Get Latest Deployment SHA
       uses: ./.github/actions/get-latest-deployment-sha
       id: get_latest_deployment_sha
@@ -32,21 +40,21 @@ runs:
         base_sha: ${{ steps.get_latest_deployment_sha.outputs.sha }}
         head_sha: ${{ github.ref }}
         path: config
-        file_name: diff.txt
-        artifact_name: diff-file
+        file_name: ${{ inputs.artifact_file_name }}
+        artifact_name: ${{ inputs.artifact_name }}
 
     - name: Get All Config Files
       uses: ./.github/actions/get-all-files
       if: ${{ inputs.is_force_deploy == 'true' }}
       with:
         path: config
-        file_name: diff.txt
-        artifact_name: diff-file
+        file_name: ${{ inputs.artifact_file_name }}
+        artifact_name: ${{ inputs.artifact_name }}
 
     - name: Download Diff Files Artifact
       uses: actions/download-artifact@v4
       with:
-        name: diff-file
+        name: ${{ inputs.artifact_name }}
         path: ./
 
     - name: Configure aws credentials

@@ -1,15 +1,15 @@
 name: "Get New Tag"
 description: "Calculate new version tag"
 outputs:
-  tag_name:
+  tag:
     description: "The generated new version tag"
-    value: ${{ steps.get_latest_tag.outputs.latest_tag }}
+    value: ${{ steps.get_latest_tag.outputs.tag }}
 
 runs:
   using: "composite"
   steps:
-    - name: Get based tag name
-      id: get_based_tag
+    - name: Get Tag Prefix
+      id: get_tag_prefix
       uses: actions/github-script@v6
       with:
         script: |
@@ -22,17 +22,17 @@ runs:
 
           // Extract the version and get the prefix
           const version = packageJson.version;
-          const versionPrefix = version.split('.').slice(0, 2).join('.') + '.';
+          const prefix = version.split('.').slice(0, 2).join('.') + '.';
 
           // Set outputs
-          core.setOutput('version_prefix', versionPrefix);
+          core.setOutput('prefix', prefix);
 
-    - name: Get latest tag with prefix
+    - name: Get Latest Tag
       id: get_latest_tag
       uses: actions/github-script@v6
       with:
         script: |
-          const prefix = `v${{ steps.get_based_tag.outputs.version_prefix }}`;
+          const prefix = `v${{ steps.get_tag_prefix.outputs.prefix }}`;
           const tags = await github.paginate('GET /repos/{owner}/{repo}/tags', {
             owner: context.repo.owner,
             repo: context.repo.repo
@@ -53,9 +53,9 @@ runs:
 
           const latestExistTag = filteredTags[0] || '';
           if (!latestExistTag) {
-            core.setOutput('latest_tag', `${prefix}0`);
+            core.setOutput('tag', `${prefix}0`);
             return;
           }
           const latestExistPatch = Number(latestExistTag.split('.')[2]);
           const latestTag = `${prefix}${latestExistPatch + 1}`;
-          core.setOutput('latest_tag', latestTag);
+          core.setOutput('tag', latestTag);
