@@ -34,7 +34,6 @@ runs:
       if: ${{ inputs.is_force_deploy == 'false' }}
       with:
         environment: "${{ inputs.environment }}"
-
     - name: Get Diff Config Files
       uses: ./.github/actions/get-diff-files
       if: ${{ inputs.is_force_deploy == 'false' }}
@@ -44,7 +43,6 @@ runs:
         path: config
         file_name: ${{ inputs.artifact_file_name }}
         artifact_name: ${{ env.artifact_name_by_env }}
-
     - name: Get All Config Files
       uses: ./.github/actions/get-all-files
       if: ${{ inputs.is_force_deploy == 'true' }}
@@ -52,13 +50,11 @@ runs:
         path: config
         file_name: ${{ inputs.artifact_file_name }}
         artifact_name: ${{ env.artifact_name_by_env }}
-
     - name: Download Diff Files Artifact
       uses: actions/download-artifact@v4
       with:
         name: ${{ env.artifact_name_by_env }}
         path: ./
-
     - name: Configure aws credentials
       id: creds
       uses: aws-actions/configure-aws-credentials@v4
@@ -67,8 +63,7 @@ runs:
         role-session-name: nimo
         aws-region: ${{ inputs.aws_region }}
         output-credentials: true
-
-    - name: "Configure AWS Profile"
+    - name: Configure AWS Profile
       shell: bash
       run: |
         mkdir -p ~/.aws
@@ -77,14 +72,18 @@ runs:
         echo "aws_secret_access_key=${{ steps.creds.outputs.aws-secret-access-key }}" >> ~/.aws/credentials
         echo "aws_session_token=${{ steps.creds.outputs.aws-session-token }}" >> ~/.aws/credentials
         echo "region=${{ inputs.aws_region }}" >> ~/.aws/credentials
-
     - name: Verify AWS CLI Configuration
       shell: bash
       run: aws sts get-caller-identity --profile nimo
-
-    - name: "Deploy to ${{ inputs.environment }}"
+    - name: Install dependencies
       shell: bash
       run: |
         npm ci
+    - name: Check version
+      shell: bash
+      run: |
         npx turtle-tools -V
+    - name: "Deploy to ${{ inputs.environment }}"
+      shell: bash
+      run: |
         npx turtle-tools config-sync sync --aws-profile nimo
