@@ -21,11 +21,16 @@ inputs:
     description: "Name of artifact file - should be diff.txt for turtle-tools to read for update the configuration files"
     required: true
     default: diff.txt
+
 runs:
   using: "composite"
-  env:
-    artifact_name_by_env: "${{ inputs.artifact_name }}.${{ inputs.environment }}"
   steps:
+    - name: Set Environment
+      id: env
+      uses: actions/github-script@v6
+      with:
+        script: |
+          core.setOutput('artifact_name_by_env', '${{ inputs.artifact_name }}.${{ inputs.environment }}');
     - name: Use Node
       uses: ./.github/actions/use-node
     - name: Get Latest Deployment SHA
@@ -42,18 +47,18 @@ runs:
         head_sha: ${{ github.ref }}
         path: config
         file_name: ${{ inputs.artifact_file_name }}
-        artifact_name: ${{ env.artifact_name_by_env }}
+        artifact_name: ${{ steps.env.outputs.artifact_name_by_env }}
     - name: Get All Config Files
       uses: ./.github/actions/get-all-files
       if: ${{ inputs.is_force_deploy == 'true' }}
       with:
         path: config
         file_name: ${{ inputs.artifact_file_name }}
-        artifact_name: ${{ env.artifact_name_by_env }}
+        artifact_name: ${{ steps.env.outputs.artifact_name_by_env }}
     - name: Download Diff Files Artifact
       uses: actions/download-artifact@v4
       with:
-        name: ${{ env.artifact_name_by_env }}
+        name: ${{ steps.env.outputs.artifact_name_by_env }}
         path: ./
     - name: Configure aws credentials
       id: creds
