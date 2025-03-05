@@ -1,5 +1,5 @@
-name: "Trigger Tag Event"
-description: "Trigger tag event via workflow_dispatch as tagging with GITHUB_TOKEN prevent upcoming event from being triggered"
+name: "Trigger Deploy Workflow"
+description: "Trigger deploy workflow via workflow_dispatch as tagging with GITHUB_TOKEN prevent upcoming event in Github Workflow from being triggered"
 inputs:
   tag:
     description: "Tag for trigger"

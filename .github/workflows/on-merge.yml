@@ -5,41 +5,53 @@ on:
   push:
     branches:
       - main
+      - release/*
 
 jobs:
   validate:
+    name: Validate
     runs-on: ubuntu-latest
     steps:
       - name: Code Checkout
         uses: actions/checkout@v4
-
-      - uses: ./.github/actions/use-node
-
+      - name: Use Node
+        uses: ./.github/actions/use-node
       - name: Validate
         run: npm run validate
 
   tag:
+    name: Tag New Version
     runs-on: ubuntu-latest
     permissions: write-all
     concurrency:
       group: version-tagging
     environment: tag
     needs: validate
+    outputs:
+      tag: ${{ steps.next_tag.outputs.tag }}
     steps:
       - name: Code Checkout
         uses: actions/checkout@v4
-
       - name: Generate Next Tag
-        id: generate_next_tag
+        id: next_tag
         uses: ./.github/actions/tag-generate
-
       - name: Create tag
         uses: ./.github/actions/tag-create
         with:
-          tag: "${{ steps.generate_next_tag.outputs.tag_name }}"
+          tag: "${{ steps.next_tag.outputs.tag }}"
 
+  trigger_deployment:
+    name: Trigger Deployment Workflow
+    runs-on: ubuntu-latest
+    permissions: write-all
+    needs: tag
+    steps:
+      - name: Log Trigger Deployment Version
+        shell: bash
+        run: |
+          echo "Trigger deployment on tag ${{ needs.tag.outputs.tag }}"
       - name: Trigger Deployment
-        uses: ./.github/actions/deploy-on-tag
+        uses: ./.github/actions/trigger-deploy-workflow
         with:
           workflow_id: on-deploy.yml
-          tag: "${{ steps.generate_next_tag.outputs.tag_name }}"
+          tag: "${{ needs.tag.outputs.tag }}"
