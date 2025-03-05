@@ -28,7 +28,7 @@ runs:
       id: get_diff
       shell: bash
       run: |
-        git diff --name-only "${{ inputs.base_sha }}" "${{ inputs.head_sha }}" -- "${{ inputs.path }}" > ${{ inputs.file_name }} 2>&1 || find "${{ inputs.file_name }}" -type f > diff.txt 2>&1
+        git diff --name-only "${{ inputs.base_sha }}" "${{ inputs.head_sha }}" -- "${{ inputs.path }}" > ${{ inputs.file_name }} 2>&1 || find "${{ inputs.path }}" -type f > ${{ inputs.file_name }} 2>&1
 
     - name: Upload Diff Files Artifact
       uses: actions/upload-artifact@v4
