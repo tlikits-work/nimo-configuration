@@ -1,0 +1,42 @@
+name: Manual Deploy
+run-name: "[Manual Deploy] Deploy to ${{ github.event.inputs.environment }}: ${{ github.event.ref }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        description: Environment to deploy
+        default: development
+        type: choice
+        options:
+          - development
+          - uat
+          - production
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/use-node
+
+      - name: Validate
+        run: npm run validate
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: validate
+    concurrency:
+      group: development-deploy
+    environment: ${{ github.event.inputs.environment }}
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - name: "Deploy to ${{ github.event.inputs.environment }}"
+        uses: ./.github/actions/deploy-to-env
+        with:
+          environment: ${{ github.event.inputs.environment }}

@@ -1,0 +1,40 @@
+name: "Deploy"
+description: "Deploy to the environment"
+inputs:
+  environment:
+    description: "The deployment environment"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - uses: ./.github/actions/use-node
+
+    - name: Get Latest Deployment SHA
+      id: get_latest_deployment_sha
+      uses: ./.github/actions/get-latest-deployment-sha
+      with:
+        environment: "${{ inputs.environment }}"
+
+    - name: Get Config Files Diff
+      id: get_config_files_diff
+      uses: ./.github/actions/get-git-diff
+      with:
+        base_sha: ${{ steps.get_latest_deployment_sha.outputs.sha }}
+        head_sha: ${{ github.ref }}
+        # path: ./config
+        path: ./.github/actions
+        file_name: diff.txt
+        artifact_name: diff-file
+
+    - name: Download Diff Files Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: diff-file
+        path: ./
+
+    # TODO: implement deploy logic
+    - name: "Deploy to ${{ inputs.environment }}"
+      shell: bash
+      run: |
+        echo "Deploying to ${{ inputs.environment }}"
+        cat ./diff.txt
