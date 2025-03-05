@@ -1,0 +1,16 @@
+{
+  "name": "nimo-configuration",
+  "description": "Git repository for storing the configuration files that shared across NIMO Environment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "turtle-tools": "0.0.1-test.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "sync": "turtle-tools -V",
+    "validate": "npm run validate:dynamodb",
+    "validate:dynamodb": "echo \"TODO: validate the files in dynamodb\""
+  },
+  "author": ""
+}

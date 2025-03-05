@@ -1,0 +1,82 @@
+name: On Tag
+run-name: "[On Tag] Deploying ${{ inputs.tag }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        required: true
+        description: Tag to deploy
+        type: string
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/use-node
+
+      - name: Validate
+        run: npm run validate
+
+  deploy-development:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    needs: validate
+    concurrency:
+      group: development-deploy
+    environment: development
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Deploy to development
+        uses: ./.github/actions/deploy-to-env
+        with:
+          environment: development
+          role_to_assume: ${{ secrets.SAM_DEPLOYMENT_ROLE_DEVELOPMENT }}
+          aws_region: ${{ secrets.AWS_REGION }}
+
+  deploy-uat:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    needs: validate
+    concurrency:
+      group: uat-deploy
+    environment: uat
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Deploy to UAT
+        uses: ./.github/actions/deploy-to-env
+        with:
+          environment: uat
+          role_to_assume: ${{ secrets.SAM_DEPLOYMENT_ROLE_DEVELOPMENT }}
+          aws_region: ${{ secrets.AWS_REGION }}
+
+  deploy-production:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    needs: validate
+    concurrency:
+      group: production-deploy
+    environment: production
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Deploy to Production
+        uses: ./.github/actions/deploy-to-env
+        with:
+          environment: production
+          role_to_assume: ${{ secrets.SAM_DEPLOYMENT_ROLE_DEVELOPMENT }}
+          aws_region: ${{ secrets.AWS_REGION }}

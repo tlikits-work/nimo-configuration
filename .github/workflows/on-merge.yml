@@ -1,0 +1,45 @@
+name: On Merge
+run-name: "[On Merge] ${{ github.event.head_commit.message }}"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/use-node
+
+      - name: Validate
+        run: npm run validate
+
+  tag:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    concurrency:
+      group: version-tagging
+    environment: tag
+    needs: validate
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate Next Tag
+        id: generate_next_tag
+        uses: ./.github/actions/tag-generate
+
+      - name: Create tag
+        uses: ./.github/actions/tag-create
+        with:
+          tag: "${{ steps.generate_next_tag.outputs.tag_name }}"
+
+      - name: Trigger Deployment
+        uses: ./.github/actions/deploy-on-tag
+        with:
+          workflow_id: on-deploy.yml
+          tag: "${{ steps.generate_next_tag.outputs.tag_name }}"
