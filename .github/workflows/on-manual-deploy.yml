@@ -13,6 +13,11 @@ on:
           - development
           - uat
           - production
+      is_force_deploy:
+        required: true
+        description: Force deploy will re-sync the whole configuration instead of just those that being different from last deployment
+        default: false
+        type: boolean
 
 jobs:
   validate:
@@ -40,3 +45,4 @@ jobs:
         uses: ./.github/actions/deploy-to-env
         with:
           environment: ${{ github.event.inputs.environment }}
+          is_force_deploy: ${{ github.event.inputs.is_force_deploy }}

@@ -1,6 +1,9 @@
 name: "Deploy"
 description: "Deploy to the environment"
 inputs:
+  is_force_deploy:
+    description: "Force deploy will re-sync the whole configuration instead of just those that being different from last deployment"
+    default: false
   environment:
     description: "The deployment environment"
     required: true
@@ -15,13 +18,21 @@ runs:
       with:
         environment: "${{ inputs.environment }}"
 
-    - name: Get Config Files Diff
-      id: get_config_files_diff
-      uses: ./.github/actions/get-git-diff
+    - name: Get Diff Config Files
+      uses: ./.github/actions/get-diff-files
+      if: "${{ inputs.is_force_deploy == false }}"
       with:
         base_sha: ${{ steps.get_latest_deployment_sha.outputs.sha }}
         head_sha: ${{ github.ref }}
         # path: ./config
+        path: ./.github/actions
+        file_name: diff.txt
+        artifact_name: diff-file
+
+    - name: Get All Config Files
+      uses: ./.github/actions/get-all-files
+      if: "${{ inputs.is_force_deploy == true }}"
+      with:
         path: ./.github/actions
         file_name: diff.txt
         artifact_name: diff-file

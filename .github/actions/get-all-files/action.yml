@@ -1,12 +1,6 @@
-name: "Get Git Diff Files Action"
+name: "Get All Files Action"
 description: "Retrieve the list of files that have changed between two specified git commit SHAs under a given path"
 inputs:
-  base_sha:
-    description: "The base commit SHA"
-    required: true
-  head_sha:
-    description: "The head commit SHA"
-    required: true
   path:
     description: "The path to filter the diff files"
     required: true
@@ -16,19 +10,14 @@ inputs:
   file_name:
     description: "The output file name in artifact"
     required: true
-outputs:
-  diff_files:
-    description: "The list of different files"
-    value: ${{ steps.get_diff.outputs.diff_files }}
 
 runs:
   using: "composite"
   steps:
-    - name: Git diff
-      id: get_diff
+    - name: Get All Files
       shell: bash
       run: |
-        git diff --name-only "${{ inputs.base_sha }}" "${{ inputs.head_sha }}" -- "${{ inputs.path }}" > ${{ inputs.file_name }} 2>&1 || find "${{ inputs.path }}" -type f > ${{ inputs.file_name }} 2>&1
+        find "${{ inputs.path }}" -type f > ${{ inputs.file_name }}
 
     - name: Upload Diff Files Artifact
       uses: actions/upload-artifact@v4
